@@ -1,3 +1,4 @@
+
 ul.thread_tools,
 ul.thread_tools li {
 	list-style: none;
@@ -6,11 +7,9 @@ ul.thread_tools li {
 }
 
 ul.thread_tools li {
-	padding-left: 24px;
 	padding-bottom: 4px;
 	margin-bottom: 3px;
 	font-size: 11px;
-	background-image: url(images/showthread_sprite.png);
 	background-repeat: no-repeat;
 }
 
@@ -42,3 +41,11 @@ ul.thread_tools li.poll {
 	padding: 20px;
 }
 
+.author_information .smalltext {
+	display: block;
+	max-width: 500px;
+	white-space: nowrap;
+}
+
+
+		

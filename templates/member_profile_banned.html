@@ -1,6 +1,6 @@
-<fieldset>
-<legend><strong>{$lang->ban_note}</strong></legend>
-<em>{$lang->banned_warning2}: {$memban['reason']}</em><br />
-<span class="smalltext"><strong>{$lang->ban_by}:</strong> {$memban['adminuser']} &mdash; <strong>{$lang->ban_length}:</strong> {$banlength} <span class="smalltext">{$timeremaining}</span></span>
-</fieldset>
-<br />
+<td class="trow1"><strong>Ban Reason:</strong></td>
+<td class='trow1'>
+<strong>Unban:</strong> <span style='color:#da2c2c;'> {$timeremaining} </span><br/>
+<strong>Banned:</strong> {$bandate_rel} <br/>
+<strong>Reason:</strong> {$memban['reason']}
+</td>

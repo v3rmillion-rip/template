@@ -2,7 +2,7 @@
 <thead>
 <tr>
 <td class="thead{$collapsedthead['boardstats']}">
-<div class="expcolimage"><img src="{$theme['imgdir']}/collapse{$collapsedimg['boardstats']}.png" id="boardstats_img" class="expander" alt="{$expaltext}" title="{$expaltext}" /></div>
+<div class="expcolimage"><img src="{$theme['imgdir']}/collapse{$collapsedimg['boardstats']}.png" id="boardstats_img" class="expander" alt="{$expaltext}" title="{$expaltext}" style="cursor: pointer;" /></div>
 <div><strong>{$lang->boardstats}</strong></div>
 </td>
 </tr>
@@ -15,6 +15,10 @@
 	<td class="tfoot" style="text-align: right">
 		<span class="smalltext">
 			{$logoutlink}
+		 	 |
+			<a href="{$mybb->settings['bburl']}/misc.php?action=markread&amp;my_post_key={$mybb->post_code}">{$lang->bottomlinks_markread}</a>
+			 | 
+			<a href="{$mybb->settings['bburl']}/showteam.php">{$lang->bottomlinks_forumteam}</a>
 			{$statspage}
 		</span>
 	</td>

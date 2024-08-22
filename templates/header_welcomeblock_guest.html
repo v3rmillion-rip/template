@@ -1,7 +1,8 @@
 						<!-- Continuation of div(class="upper") as opened in the header template -->
-						<span class="welcome">{$lang->welcome_guest} <a href="{$mybb->settings['bburl']}/member.php?action=login" onclick="$('#quick_login').modal({ fadeDuration: 250, keepelement: true, zIndex: (typeof modal_zindex !== 'undefined' ? modal_zindex : 9999) }); return false;" class="login">{$lang->welcome_login}</a> <a href="{$mybb->settings['bburl']}/member.php?action=register" class="register">{$lang->welcome_register}</a></span>
-					</div>
+						<div style="padding: 5px 0px;">
+<span class="welcome">{$lang->welcome_guest} <a href="{$mybb->settings['bburl']}/member.php?action=login" onclick="$('#quick_login').modal({ fadeDuration: 250, keepelement: true, zIndex: (typeof modal_zindex !== 'undefined' ? modal_zindex : 9999) }); return false;" clas>{$lang->welcome_login}</a> or <a href="{$mybb->settings['bburl']}/member.php?action=register" class="button">{$lang->welcome_register}</a></span><a target="_blank" href="https://twitter.com/segv3rm">help?</a>
 				</div>
+
 				<div class="modal" id="quick_login" style="display: none;">
 					<form method="post" action="{$mybb->settings['bburl']}/member.php">
 						<input name="action" type="hidden" value="do_login" />

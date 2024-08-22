@@ -1,38 +1,40 @@
-<debugstuff>
-	</div>
-</div>
-<div id="footer">
-	<div class="upper">
-		<div class="wrapper">
-			{$lang_select}
-			{$theme_select}
-			<ul class="menu bottom_links">
-				{$showteamlink}
-				{$contact_us}
-				<li><a href="{$mybb->settings['homeurl']}">{$mybb->settings['homename']}</a></li>
-				<li><a href="#top">{$lang->bottomlinks_returntop}</a></li>
-				<li><a href="<archive_url>">{$lang->bottomlinks_litemode}</a></li>
-				<li><a href="{$mybb->settings['bburl']}/misc.php?action=markread{$post_code_string}">{$lang->bottomlinks_markread}</a></li>
-				<li><a href="{$mybb->settings['bburl']}/misc.php?action=syndication">{$lang->bottomlinks_syndication}</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="lower">
-		<div class="wrapper">
-			<span id="current_time">{$lang->welcome_current_time}</span>
-			<span id="copyright">
-				<!-- MyBB is free software developed and maintained by a volunteer community.
-					It would be much appreciated by the MyBB Group if you left the full copyright and "powered by" notice intact,
-					to show your support for MyBB.  If you choose to remove or modify the copyright below,
-					you may be refused support on the MyBB Community Forums.
+{myadvertisements[zone_2]}<debugstuff>
 
-					This is free software, support us and we'll support you. -->
-				{$lang->powered_by} <a href="https://mybb.com" target="_blank" rel="noopener">MyBB{$mybbversion}</a>, &copy; 2002-{$copy_year} <a href="https://mybb.com" target="_blank" rel="noopener">MyBB Group</a>.
-				<!-- End powered by -->
-			</span>
-		</div>
-	</div>
+	
+	
+<style>
+ul.bottommenu, .cRem {
+  height: auto !important;
+}
+</style>
+<div id="footer">
+   <ul class="bottommenu">
+      <h2>Navigation</h2>
+      <li><a href="removals.php"><i class="fa fa-times"></i>&nbsp; Request Content Removal</a></li>
+      <li><a href="contact.php"><i class="fa fa-envelope"></i>&nbsp; Contact Us</a></li>
+      <li><a href="legal.html"><i class="fa fa-gavel"></i>&nbsp; Legal Documents</a></li>
+   </ul>
+   <ul class="bottommenu">
+      <h2>Links</h2>
+      <li><a href="legal.html#priv"><i class="fa fa-eye"></i>&nbsp; Privacy Policy</a></li>
+      <li><a href="rules.php"><i class="fa fa-flag"></i>&nbsp; Rules</a></li>
+      <li><a href="autoupgrade.php"><i class="fa fa-star"></i>&nbsp; Upgrade</a></li>
+   </ul>
+   <div class="cRem" id="about">
+      <h2>About Us</h2>
+      Vermillion is a Programming and Gaming community forum dedicated to the conversation of a range of topics, within and out of the programming world. Join us today! If you have any questions, feel free to make a thread in our <a href="forumdisplay.php?fid=11">User Support Section</a> or join our <a href="discord.php">Di‎sc‎o‎rd Chat</a>.
+      <br><br>If any content on this site is illegal, infringes on your copyright, or contains personal information, you can <a href="removals.php">request to have it removed with this form</a>. If content is in violation of our <a href="rules.php">rules</a>, please use the report button or contact a <a href="showteam.php">staff member</a>.
+   </div>
 </div>
+
+<div id="copyright">
+				V3rmillion ©  2024 - Not affiliated in any way with the Roblox Corporation or any of its trademarks.
+</div>
+	
+	
 <!-- The following piece of code allows MyBB to run scheduled tasks. DO NOT REMOVE -->{$task_image}<!-- End task image code -->
 {$auto_dst_detection}
+</div>
+
+	</div>
 </div>

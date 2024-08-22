@@ -6,7 +6,8 @@
 </head>
 <body>
 {$header}
-<fieldset>
+
+<fieldset class="profile_header">
 	<table width="100%" cellspacing="0" cellpadding="0" border="0">
 		<tr>
 			<td width="75%">
@@ -19,7 +20,9 @@
 					<strong>{$lang->registration_date}</strong> {$memregdate}<br />
 					<strong>{$lang->date_of_birth}</strong> {$membday} {$membdayage}<br />
 					<strong>{$lang->local_time}</strong> {$localtime}<br />
-					<strong>{$lang->postbit_status}</strong> {$online_status}
+					<strong>{$lang->postbit_status}</strong> {$online_status}{$username_changes}<br />
+					
+					{$multiaccountsdetails}
 				</span>
 			</td>
 			<td width="25%" align="right" valign="middle">{$avatar}</td>
@@ -27,7 +30,7 @@
 	</table>
 </fieldset>
 <br />
-{$awaybit}{$bannedbit}
+{$awaybit}
 <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
 	<tr>
 		<td width="50%" valign="top">
@@ -57,6 +60,32 @@
 				</tr>
 				{$referrals}
 				{$reputation}
+				{$bannedbit}
+				<style>
+    					.likebar {
+    					    position: relative;
+    					    display: inline-block;
+    					  -- border-bottom: 1px dotted black;
+    					}
+					
+    					.likebar .tooltiptext {
+    					    text-align: center;
+    					    padding: 5px 0;
+    					    border-radius: 2px;
+    					    visibility: hidden;
+    					    width: 110px;
+    					    background-color: #101010;
+    					    position: absolute;
+    					    margin-top: 15px;
+    					    z-index: 10;
+    					}
+					
+    					.likebar:hover .tooltiptext {
+    					    visibility: visible;
+    					    opacity: 1;
+    					}
+				</style>
+				{$ratingbar}
 				{$warning_level}
 			</table>
 			{$contact_details}
@@ -65,12 +94,25 @@
 		<td width="50%" valign="top">
 			{$profilefields}
 			{$signature}
+			{$memprofile['ougc_awards']}
 			{$modoptions}
 			{$adminoptions}
 			<div style="text-align: center">{$buddy_options}{$ignore_options}{$report_options}</div>
 		</td>
 	</tr>
 </table>
+<br>
+<br>
+<br>
+<style>
+ul.bottommenu, .cRem {
+  height: auto !important;
+}
+</style>
 {$footer}
+	
+	
+
 </body>
+
 </html>

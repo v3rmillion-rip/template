@@ -1,9 +1,11 @@
+
 .thread_status {
 	display: inline-block;
-	width: 16px;
-	height: 16px;
-	background-image: url(images/folders_sprite.png);
+	height: 24px;
+	background-image: url(../../../images/vermillion/folders_sprite.png);
 	background-repeat: no-repeat;
+	
+	width: 24px;
 }
 
 .thread_status.dot_folder {
@@ -11,65 +13,68 @@
 }
 
 .thread_status.dot_hotfolder {
-	background-position: 0 -20px;
+	background-position: 0 -24px;
 }
 
-.thread_status.dot_hotclosefolder {
-	background-position: 0 -40px;
+.thread_status.dot_hotlockfolder {
+	background-position: 0 -48px;
 }
 
-.thread_status.dot_closefolder {
-	background-position: 0 -60px;
+.thread_status.dot_lockfolder {
+	background-position: 0 -72px;
 }
 
 .thread_status.dot_newfolder {
-	background-position: 0 -80px;
+	background-position: 0 -96px;
 }
 
 .thread_status.dot_newhotfolder {
-	background-position: 0 -100px;
-}
-
-.thread_status.dot_newhotclosefolder {
 	background-position: 0 -120px;
 }
 
-.thread_status.dot_newclosefolder {
-	background-position: 0 -140px;
+.thread_status.dot_newhotlockfolder {
+	background-position: 0 -120px;
+}
+
+.thread_status.dot_newlockfolder {
+	background-position: 0 -144px;
 }
 
 .thread_status.folder {
-	background-position: 0 -160px;
+	background-position: 0 -168px;
 }
 
 .thread_status.hotfolder {
-	background-position: 0 -180px;
+	background-position: 0 -192px;
 }
 
-.thread_status.hotclosefolder {
-	background-position: 0 -200px;
+.thread_status.hotlockfolder {
+	background-position: 0 -216px;
 }
 
-.thread_status.closefolder {
-	background-position: 0 -220px;
-}
-
-.thread_status.movefolder {
+.thread_status.lockfolder {
 	background-position: 0 -240px;
 }
 
+.thread_status.movefolder {
+	background-position: 0 -264px;
+}
+
 .thread_status.newfolder {
-	background-position: 0 -260px;
+	background-position: 0 -288px;
 }
 
 .thread_status.newhotfolder {
-	background-position: 0 -280px;
+	background-position: 0 -312px;
 }
 
-.thread_status.newhotclosefolder {
-	background-position: 0 -300px;
+.thread_status.newhotlockfolder {
+	background-position: 0 -336px;
 }
 
-.thread_status.newclosefolder {
-	background-position: 0 -320px;
+.thread_status.newlockfolder {
+	background-position: 0 -360px;
 }
+
+
+		
