@@ -33,16 +33,26 @@
 	}
 
 	function isBot() {
-		global $mybb, $db;
-		$useragent = $mybb->useragent;
-		
-		$query = $db->simple_select("spiders", "*", "useragent LIKE '%" . $db->escape_string($useragent) . "%'");
-		$spider = $db->fetch_array($query);
-		
-		if (!$spider) {
-			return false;
-		}
-		return true;
+    global $mybb, $db;
+
+    $useragent = $mybb->useragent;
+    $useragentEscaped = $db->escape_string($useragent);
+
+    // Debugging output
+    echo "User Agent: " . htmlspecialchars($useragent) . "<br />";
+    echo "Escaped User Agent: " . htmlspecialchars($useragentEscaped) . "<br />";
+
+    // Adjusted query for case-insensitive search
+    $query = $db->simple_select("spiders", "*", "LOWER(useragent) LIKE '%" . strtolower($useragentEscaped) . "%'");
+    $spider = $db->fetch_array($query);
+
+    if (!$spider) {
+        echo "No matching spider found.<br />";
+        return false;
+    }
+
+    echo "Matching spider found.<br />";
+    return true;
 	}
 
 	$urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
