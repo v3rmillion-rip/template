@@ -32,117 +32,88 @@
 		echo insertThemeColor();
 	}
 
-	function isBot() {
-    global $mybb, $db;
-
-    $useragent = $mybb->useragent;
-    $useragentEscaped = $db->escape_string($useragent);
-
-    // Debugging output
-    echo "User Agent: " . htmlspecialchars($useragent) . "<br />";
-    echo "Escaped User Agent: " . htmlspecialchars($useragentEscaped) . "<br />";
-
-    // Adjusted query for case-insensitive search
-    $query = $db->simple_select("spiders", "*", "LOWER(useragent) LIKE '%" . strtolower($useragentEscaped) . "%'");
-    $spider = $db->fetch_array($query);
-
-    if (!$spider) {
-        echo "No matching spider found.<br />";
-        return false;
-    }
-
-    echo "Matching spider found.<br />";
-    return true;
-	}
-
 	$urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-	if (isBot())
+	
+	if ($urlPath == "/showthread.php")
 	{
-		if ($urlPath == "/showthread.php")
+		$thread = get_thread($mybb->get_input('tid', MyBB::INPUT_INT));
+	
+		if ($thread)
 		{
-			$thread = get_thread($mybb->get_input('tid', MyBB::INPUT_INT));
+			$firstPost = get_post($thread['firstpost']);
+			
+			$parser_options = array(
+				'allow_html' => 0,
+				'allow_mycode' => 1,
+				'allow_smilies' => 0,
+				'allow_imgcode' => 0,
+			  	'allow_videocode' => 1,
+				'me_username' => $post['username'],
+			  	'filter_badwords' => 1
+			);
 		
-			if ($thread)
-			{
-				$firstPost = get_post($thread['firstpost']);
-				
-				$parser_options = array(
-					'allow_html' => 0,
-					'allow_mycode' => 1,
-					'allow_smilies' => 0,
-					'allow_imgcode' => 0,
-				  	'allow_videocode' => 1,
-					'me_username' => $post['username'],
-				  	'filter_badwords' => 1
-				);
-			
-				$firstPostDescription = my_strip_tags($parser->parse_message($firstPost['message'], $parser_options));
-				$firstPostDescription = preg_replace("/(?i)\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|(([^\s()<>]+|(([^\s()<>]+)))*))+(?:(([^\s()<>]+|(([^\s()<>]+)))*)|[^\s`!()[]{};:'\".,<>?«»“”‘’]))/", '(link)', $firstPostDescription);
-			
-				if (strlen($firstPostDescription) > 170) {
-				  	$firstPostDescription = substr($firstPostDescription, 0, 170) . "...";
-				}
-			
-				echo "<meta property=\"og:site_name\" content=\"V3rmillion - Thread by " . $thread['username'] . "\" />";
-				echo "\n<meta property=\"og:title\" content=\"" . $thread['subject'] . "\"/>";
-				echo "\n<meta property=\"og:description\" content=\"" . $firstPostDescription . "\"/>\n";
-				echo insertThemeColor();
+			$firstPostDescription = my_strip_tags($parser->parse_message($firstPost['message'], $parser_options));
+			$firstPostDescription = preg_replace("/(?i)\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|(([^\s()<>]+|(([^\s()<>]+)))*))+(?:(([^\s()<>]+|(([^\s()<>]+)))*)|[^\s`!()[]{};:'\".,<>?«»“”‘’]))/", '(link)', $firstPostDescription);
+		
+			if (strlen($firstPostDescription) > 170) {
+			  	$firstPostDescription = substr($firstPostDescription, 0, 170) . "...";
 			}
-			else
-			{
-				insertGenericMetadata();
-			}
+		
+			echo "<meta property=\"og:site_name\" content=\"V3rmillion - Thread by " . $thread['username'] . "\" />";
+			echo "\n<meta property=\"og:title\" content=\"" . $thread['subject'] . "\"/>";
+			echo "\n<meta property=\"og:description\" content=\"" . $firstPostDescription . "\"/>\n";
+			echo insertThemeColor();
 		}
-		else if ($urlPath == "/member.php")
+		else
 		{
-			$mybb->input['action'] = $mybb->get_input('action');
-		
-			if($mybb->input['action'] == "profile")
+			insertGenericMetadata();
+		}
+	}
+	else if ($urlPath == "/member.php")
+	{
+		$mybb->input['action'] = $mybb->get_input('action');
+	
+		if($mybb->input['action'] == "profile")
+		{
+			$uid = $mybb->get_input('uid', MyBB::INPUT_INT);
+			
+			if ($uid)
 			{
-				$uid = $mybb->get_input('uid', MyBB::INPUT_INT);
-				
-				if ($uid)
+				$memprofile = get_user($uid);
+			
+				if ($memprofile)
 				{
-					$memprofile = get_user($uid);
-				
-					if ($memprofile)
+					if(!$memprofile['displaygroup'])
 					{
-						if(!$memprofile['displaygroup'])
-						{
-							$memprofile['displaygroup'] = $memprofile['usergroup'];
-						}
+						$memprofile['displaygroup'] = $memprofile['usergroup'];
+					}
+				
+					$displaygroup = usergroup_displaygroup($memprofile['displaygroup']);
+				
+					// Regular expression to match the color value
+					preg_match('/color:\s*#([A-Fa-f0-9]{6})/', $displaygroup['namestyle'], $matches);
+				
+					insertSiteName();
+				
+					echo "\n<meta property=\"og:title\" content=\"Profile of " . $memprofile['username'] . "\"/>";
+				
+					// Check if a match was found and output the color value
+					if (isset($matches[1])) {
+						$color = $matches[1];
+						echo "\n<meta name=\"theme-color\" content=\"#" . $color . "\" data-react-helmet=\"true\" />";
 					
-						$displaygroup = usergroup_displaygroup($memprofile['displaygroup']);
-					
-						// Regular expression to match the color value
-						preg_match('/color:\s*#([A-Fa-f0-9]{6})/', $displaygroup['namestyle'], $matches);
-					
-						insertSiteName();
-					
-						echo "\n<meta property=\"og:title\" content=\"Profile of " . $memprofile['username'] . "\"/>";
-					
-						// Check if a match was found and output the color value
-						if (isset($matches[1])) {
-							$color = $matches[1];
-							echo "\n<meta name=\"theme-color\" content=\"#" . $color . "\" data-react-helmet=\"true\" />";
+						$query = $db->simple_select("userfields", "fid2", "ufid = '{$uid}'");
 						
-							$query = $db->simple_select("userfields", "fid2", "ufid = '{$uid}'");
-							
-							if($db->num_rows($query) > 0)
+						if($db->num_rows($query) > 0)
+						{
+							$user_fields = $db->fetch_array($query);
+						
+							if (!empty($user_fields['fid2']))
 							{
-								$user_fields = $db->fetch_array($query);
-							
-								if (!empty($user_fields['fid2']))
-								{
-									echo "\n<meta property=\"og:description\" content=\"" . $user_fields['fid2'] . "\" />";
-								}
+								echo "\n<meta property=\"og:description\" content=\"" . $user_fields['fid2'] . "\" />";
 							}
 						}
-					}
-					else
-					{
-						insertGenericMetadata();
 					}
 				}
 				else
@@ -159,6 +130,11 @@
 		{
 			insertGenericMetadata();
 		}
+	}
+	else
+	{
+		insertGenericMetadata();
+	}
 	}
 ?>{$headerinclude}
 </head>
