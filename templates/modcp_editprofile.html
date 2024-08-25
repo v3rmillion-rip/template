@@ -122,15 +122,24 @@
 										<tr>
 											<td>
 												<select name="ug_select">
-													<option value="{$user['usergroup']}">{$user['usergroup']}</option>
 													<?php
 														$groupscache = $cache->read('usergroups');
+														$current_gid = $user['usergroup'];
+
+														if(isset($groupscache[$current_gid])) {
+															echo '<option value="' . $current_gid . '" selected="selected">' . htmlspecialchars($groupscache[$current_gid]['title']) . '</option>';
+														}
+													
 														foreach($groupscache as $gid => $usergroup) {
-   		 													echo '<option value="' . $gid . '">' . htmlspecialchars($usergroup['title']) . '</option>';
+															if($gid == $current_gid) {
+																continue;
+															}
+															echo '<option value="' . $gid . '">' . htmlspecialchars($usergroup['title']) . '</option>';
 														}
 													?>
 												</select>
 											</td>
+										</tr>
 									</table>
 								</fieldset>
 								<br />
