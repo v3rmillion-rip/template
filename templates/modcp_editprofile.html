@@ -117,14 +117,20 @@
 								</fieldset>
 								<br />
 								<fieldset class="trow2">
-									<legend><strong>{$lang->additional_contact_details}</strong></legend>
+									<legend><strong>User Group Settings</strong></legend>
 									<table cellspacing="0" cellpadding="{$theme['tablespace']}">
 										<tr>
-											<td><span class="smalltext">{$lang->icq_number}</span></td>
-										</tr>
-										<tr>
-											<td><input type="text" class="textbox" name="icq" size="25" value="{$user_icq}" /></td>
-										</tr>
+											<td>
+												<select name="ug_select">
+													<option value="{$user['usergroup']}">{$user['usergroup']}</option>
+												</select>
+											</td>
+									</table>
+								</fieldset>
+								<br />
+								<fieldset class="trow2">
+									<legend><strong>{$lang->additional_contact_details}</strong></legend>
+									<table cellspacing="0" cellpadding="{$theme['tablespace']}">
 										<tr>
 											<td><span class="smalltext">{$lang->skype_id}</span></td>
 										</tr>
