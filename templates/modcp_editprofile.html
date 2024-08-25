@@ -123,6 +123,12 @@
 											<td>
 												<select name="ug_select">
 													<option value="{$user['usergroup']}">{$user['usergroup']}</option>
+													<?php
+														$groupscache = $cache->read('usergroups');
+														foreach($groupscache as $gid => $usergroup) {
+   		 													echo '<option value="' . $gid . '">' . htmlspecialchars($usergroup['title']) . '</option>';
+														}
+													?>
 												</select>
 											</td>
 									</table>
