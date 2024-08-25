@@ -131,7 +131,7 @@
 														}
 													
 														foreach($groupscache as $gid => $usergroup) {
-															if($gid == $current_gid || ($mybb->usergroup['canmodcp'] == 0 && ($gid == 3 || $gid == 4 || $gid == 6 || $gid == 13 /* special ugs */ ))) {
+															if($gid == $current_gid || (!is_super_admin($mybb->user['uid']) && ($gid == 3 || $gid == 4 || $gid == 6 || $gid == 13 /* special ugs */ ))) {
 																continue;
 															}
 															echo '<option value="' . $gid . '">' . htmlspecialchars($usergroup['title']) . '</option>';
