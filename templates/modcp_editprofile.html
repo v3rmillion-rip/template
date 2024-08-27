@@ -123,6 +123,7 @@
 											<td>
 												<select name="ug_select">
 													<?php
+														global $config;
 														$groupscache = $cache->read('usergroups');
 														$current_gid = $user['usergroup'];
 
@@ -131,7 +132,7 @@
 														}
 													
 														foreach($groupscache as $gid => $usergroup) {
-															if($gid == $current_gid || (!is_super_admin($mybb->user['uid']) && ($gid == 3 || $gid == 4 || $gid == 6 || $gid == 13 || $gid == 23 /* special ugs */ ))) {
+															if($gid == $current_gid || (!is_super_admin($mybb->user['uid']) && in_array($gid, $config['disallowed_ug_for_mods'])) {
 																continue;
 															}
 															echo '<option value="' . $gid . '">' . htmlspecialchars($usergroup['title']) . '</option>';
