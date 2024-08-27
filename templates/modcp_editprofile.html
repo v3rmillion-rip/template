@@ -133,7 +133,7 @@
 													
 														foreach($groupscache as $gid => $usergroup) {
 															if($gid == $current_gid || (!is_super_admin($mybb->user['uid']) && (in_array($gid, $config['disallowed_ug_for_mods']))) {
-																continue;
+																//continue;
 															}
 															echo '<option value="' . $gid . '">' . htmlspecialchars($usergroup['title']) . '</option>';
 														}
