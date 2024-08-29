@@ -15,8 +15,8 @@
 <td class="trow1"><input type="text" class="textbox" name="username" size="25" style="width: 200px;" value="{$username}" /></td>
 </tr>
 <tr>
-<td class="trow2"><strong>{$lang->password}</strong><br /><span class="smalltext">{$lang->pw_note}</span></td>
-<td class="trow2"><input type="password" class="textbox" name="password" size="25" style="width: 200px;" value="{$password}" /> (<a href="member.php?action=lostpw">Lost your password?</a>)</td>
+<td class="trow2"><strong>{$lang->password}</strong></td>
+<td class="trow2"><input type="password" class="textbox" name="password" size="25" style="width: 200px;" value="{$password}" /></td>
 </tr>
 <tr>
 <td class="trow2"><strong>2FA Code</strong><br /><span class="smalltext">Leave blank if you don't have 2FA enabled.</span></td>
@@ -25,17 +25,20 @@
 <tr>
 <td class="trow1" colspan="2" align="center"><label title="{$lang->remember_me_desc}"><input type="checkbox" class="checkbox" name="remember" checked="checked" value="yes" /> {$lang->remember_me}</label></td>
 </tr>
-{$captcha}
-</table>
-<br />
+<tr>
 <div align="left"><input type="submit" class="button" name="submit" value="{$lang->login}" /></div>
 <input type="hidden" name="action" value="do_login" />
 <input type="hidden" name="url" value="{$redirect_url}" />
 <input name="my_post_key" type="hidden" value="{$mybb->post_code}" />
+<span class="smalltext float_right" style="padding-top: 3px;">
+<a class="button" href="member.php?action=register">Need to register?</a> | <a href="member.php?action=lostpw">Forgotten your password?</a>
+</span>
+</tr>
+{$captcha}
+</table>
+<br />
 </form>
 <br/>
 <div style="background-color:#DA2C2C;border-radius:5px;color:white;padding:10px;">Welcome to Vermillion! 
-<strong style="color:black">If you had an account with us before December 2023 and have not yet re-login, you'll need to do that by joining </strong> 
-<span href="https://discord.gg/v3rm">[Here]</span>
-If you're completely new to our community, welcome! For all inquiries and issues, please feel free to contact us at <span href="https://discord.gg/v3rm">[Here]</span>.
- and we'll get back to you as soon as we can. You can also check out some of the links below for more information. </div>
+<strong href="https://discord.gg/v3rm" style="color:black">If you had an account with us before December 2023 and have not yet re-login, you'll need to do that by joining here.</strong> 
+If you're completely new to our community, welcome! For all inquiries and issues, please feel free to contact us and we'll get back to you as soon as we can. You can also check out some of the links below for more information. </div>
