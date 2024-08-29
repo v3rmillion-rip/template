@@ -22,18 +22,22 @@
 <td class="trow2"><strong>2FA Code</strong><br /><span class="smalltext">Leave blank if you don't have 2FA enabled.</span></td>
 <td class="trow2"><input type="text" class="textbox" name="otp" size="25" style="width: 200px;" placeholder="2FA code" /> (<a href="2famisc.php?action=lost2fa">Lost 2FA?</a>)</td>
 </tr>
+
 <tr>
 <td class="trow1" colspan="2" align="center"><label title="{$lang->remember_me_desc}"><input type="checkbox" class="checkbox" name="remember" checked="checked" value="yes" /> {$lang->remember_me}</label></td>
 </tr>
+	
 <tr>
-<div align="left"><input type="submit" class="button" name="submit" value="{$lang->login}" /></div>
+<td class="trow2" colspan="2">
+<span class="smalltext float_right" style="padding-top: 3px;"><input type="submit" class="button" name="submit" value="{$lang->login}" /></span>
 <input type="hidden" name="action" value="do_login" />
 <input type="hidden" name="url" value="{$redirect_url}" />
 <input name="my_post_key" type="hidden" value="{$mybb->post_code}" />
 <span class="smalltext float_right" style="padding-top: 3px;">
 <a class="button" href="member.php?action=register">Need to register?</a> | <a href="member.php?action=lostpw">Forgotten your password?</a>
-</span>
+</td>
 </tr>
+	
 {$captcha}
 </table>
 <br />
